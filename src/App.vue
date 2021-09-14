@@ -13,25 +13,31 @@ import Chart from "./components/Chart.vue";
     Chart,
   },
 })
+  // labels: [new Date(86400000), // Day 1
+  //          new Date(2 * 86400000), // Day 2
+  //          new Date(3 * 86400000), // Day 3
+  //          new Date(4 * 86400000)],
 export default class App extends Vue {
   chartData = {
-      labels: [new Date(86400000), // Day 1
-    new Date(2 * 86400000), // Day 2
-    new Date(3 * 86400000), // Day 3
-    new Date(40 * 86400000)],
+    labels:[],
       datasets: [
         {
           backgroundColor: [
             '#41B883',
-            '#E46651',
-            '#00D8FF',
-            '#DD1B16'
           ],
-          data: [40, 20, 80, 10]
+          data: []
         }
       ]
-    }
+  }
 
+  test = () => {
+    this.chartData.labels = this.chartData.labels.concat(new Date())
+    this.chartData.datasets[0].data = this.chartData.datasets[0].data.concat(11)
+    setTimeout(this.test, 1000)
+  }
+  mounted() {
+    setTimeout(this.test, 1000)
+  }
 }
 </script>
 
