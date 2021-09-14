@@ -1,18 +1,22 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+      <h1>Sensorwatch</h1>
+  <Chart msg="Welcome to Your Vue.js + TypeScript App" />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+import Chart from "./components/Chart.vue";
 
 @Options({
   components: {
-    HelloWorld,
+    Chart,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+
+
+}
 </script>
 
 <style>
