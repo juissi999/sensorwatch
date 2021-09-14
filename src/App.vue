@@ -1,7 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
       <h1>Sensorwatch</h1>
-  <Chart msg="Welcome to Your Vue.js + TypeScript App" />
+  <Chart :chartData="chartData" />
 </template>
 
 <script lang="ts">
@@ -14,7 +14,20 @@ import Chart from "./components/Chart.vue";
   },
 })
 export default class App extends Vue {
-
+  chartData = {
+      labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+      datasets: [
+        {
+          backgroundColor: [
+            '#41B883',
+            '#E46651',
+            '#00D8FF',
+            '#DD1B16'
+          ],
+          data: [40, 20, 80, 10]
+        }
+      ]
+    }
 
 }
 </script>
