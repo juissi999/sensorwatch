@@ -15,7 +15,10 @@ import Chart from "./components/Chart.vue";
 })
 export default class App extends Vue {
   chartData = {
-      labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+      labels: [new Date(86400000), // Day 1
+    new Date(2 * 86400000), // Day 2
+    new Date(3 * 86400000), // Day 3
+    new Date(40 * 86400000)],
       datasets: [
         {
           backgroundColor: [

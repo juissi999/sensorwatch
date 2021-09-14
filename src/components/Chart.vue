@@ -4,6 +4,7 @@
       id="chart1"
       type="line"
       :data="chartData"
+      :options="options"
     ></Vue3ChartJs>
   </div>
 </template>
@@ -11,6 +12,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
+import momentAdapter from 'chartjs-adapter-moment'
 
 @Options({
   props: {
@@ -19,7 +21,18 @@ import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
   components:{ Vue3ChartJs }
 })
 export default class Chart extends Vue {
-  msg!: string;
+  options = {
+    scales: {
+      x: {
+        type: 'time',
+        adapters: { 
+          date: { 
+            momentAdapter
+          }
+        },
+      }
+    }
+  }
 }
 </script>
 <style scoped>
