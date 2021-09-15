@@ -6,7 +6,6 @@
       type="line"
       :data="chartData"
       :options="options"
-      @click="onClicked"
     ></Vue3ChartJs>
   </div>
 </template>
@@ -16,6 +15,7 @@ import { Options, Vue } from "vue-class-component";
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 import 'chartjs-adapter-moment'
 import {ref} from 'vue'
+import {Watch} from 'vue-property-decorator'
 
 @Options({
   props: {
@@ -33,10 +33,11 @@ export default class Chart extends Vue {
       }
     }
   }
-onClicked() {
-  this.chartRef.update(250)
-}
 
+  @Watch('chartData', {deep:true})
+  updateChart() {
+    this.chartRef.update(250)
+  }
 }
 </script>
 <style scoped>
