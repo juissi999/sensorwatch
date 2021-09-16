@@ -9,6 +9,12 @@ const server = app.listen(PORT)
 var io = require('socket.io')(server)
 io.sockets.on("connection",(socket)=>{
   console.log(`New connection with id ${socket.id}`)
-})
 
+  setInterval(()=>{
+    socket.broadcast.emit('data', {
+      timestamp: new Date,
+      datapoint: 25
+    })
+  }, 2000)
+})
 

@@ -31,14 +31,15 @@ export default class App extends Vue {
       ]
   }
 
-  test = () => {
-    this.chartData.labels = this.chartData.labels.concat(new Date())
-    this.chartData.datasets[0].data = this.chartData.datasets[0].data.concat(11)
-    setTimeout(this.test, 1000)
+  updateData = (newData) => {
+    this.chartData.labels = this.chartData.labels.concat(newData.timestamp)
+    this.chartData.datasets[0].data = this.chartData.datasets[0].data.concat(newData.datapoint)
   }
   mounted() {
     const socket = io("/");
-    setTimeout(this.test, 1000)
+    socket.on('data', (data)=>{
+      this.updateData(data)
+    })
   }
 }
 </script>
