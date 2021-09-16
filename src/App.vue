@@ -7,6 +7,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Chart from "./components/Chart.vue";
+import { io } from "socket.io-client"
 
 @Options({
   components: {
@@ -36,6 +37,7 @@ export default class App extends Vue {
     setTimeout(this.test, 1000)
   }
   mounted() {
+    const socket = io("/");
     setTimeout(this.test, 1000)
   }
 }
