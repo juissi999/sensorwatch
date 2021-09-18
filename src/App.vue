@@ -39,11 +39,17 @@ export default class App extends Vue {
     this.chartData.datasets[0].data = this.chartData.datasets[0].data.concat(newData.datapoint)
     this.chartData.datasets[0].label = newData.label
   }
+  drawData = (dataVector) => {
+    this.chartData.labels = this.chartData.labels=dataVector.map(dp=>dp.timestamp)
+    this.chartData.datasets[0].data = dataVector.map(dp=>dp.datapoint)
+    this.chartData.datasets[0].label = dataVector[0].label
+  }
   mounted() {
     
     this.socket = io()
-    this.socket.on('data', (data:any)=>{
-      this.updateData(data)
+    this.socket.on('data', (datapoints:any[])=>{
+      //datapoints.forEach((dp:any)=>this.drawData(dp))
+      this.drawData(datapoints)
     })
     this.socket.on("connect_error", (err:any) => {
       console.log(`connect_error due to ${err.message}`)
