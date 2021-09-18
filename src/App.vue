@@ -23,6 +23,7 @@ export default class App extends Vue {
     labels:[],
       datasets: [
         {
+          label:'',
           backgroundColor: [
             '#41B883',
           ],
@@ -31,16 +32,26 @@ export default class App extends Vue {
       ]
   }
 
+  socket = null
+
   updateData = (newData) => {
     this.chartData.labels = this.chartData.labels.concat(newData.timestamp)
     this.chartData.datasets[0].data = this.chartData.datasets[0].data.concat(newData.datapoint)
+    this.chartData.datasets[0].label = newData.label
   }
   mounted() {
-    const socket = io("/");
-    socket.on('data', (data)=>{
+    
+    this.socket = io()
+    this.socket.on('data', (data:any)=>{
       this.updateData(data)
     })
+    this.socket.on("connect_error", (err:any) => {
+      console.log(`connect_error due to ${err.message}`)
+    })
   }
+  // beforeUnmount() {
+  //   this.socket.disconnect()
+  // }
 }
 </script>
 
