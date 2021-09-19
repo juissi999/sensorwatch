@@ -24,7 +24,7 @@ export default class App extends Vue {
       datasets: [
         {
           label:'',
-          backgroundColor: [
+          borderColor: [
             '#41B883',
           ],
           data: []

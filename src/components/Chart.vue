@@ -27,16 +27,20 @@ export default class Chart extends Vue {
   chartRef = ref(null)
 
   options = {
+    pointRadius:0,
     scales: {
       x: {
         type: 'time',
+        grid: {
+          display:false,
+        }
       }
     }
   }
 
   @Watch('chartData', {deep:true})
   updateChart() {
-    this.chartRef.update(250)
+    this.chartRef.update('none')
   }
 }
 </script>
