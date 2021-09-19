@@ -1,6 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-      <h1>Sensorwatch</h1>
+  <img alt="sensorwatch logo" src="./assets/logo.png" />
   <Chart :chartData="chartData" />
 </template>
 
